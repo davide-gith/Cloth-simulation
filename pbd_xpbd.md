@@ -57,13 +57,23 @@ The goal of the solver is to correct the predicted positions of the particles su
 So, PBD borrows the idea from the Gauss-Seidel algorithm (which can only handle linear systems) of solving each constraint independently, one after the other. In this way, the particles are projected into valid positions with respect to the given constraint alone. The fact that each constraint is linearized individually before its projection makes the solver more stable.  
 
 In the solver, given *x*, it is necessary to find the correction vector $\Delta x$ such that $C(\Delta x + x) = 0$.  
-If this vector is restricted to be in the direction of $\nabla C$ (which is also a requirement for linear and angular momentum conservation), it means that only a scalar $\lambda$ needs to be found to compute the correction $\Delta x$:  
-$\lambda = \frac{-C(x)}{w_1 \cdot \lVert \nabla C_1 \rVert^2 + w_2 \cdot \lVert \nabla C_2 \rVert^2 + ... + w_n \cdot \lVert \nabla C_n \rVert^2}$  
+If this vector is restricted to be in the direction of $\nabla C$ (which is also a requirement for linear and angular momentum conservation), it means that only a scalar $\lambda$ needs to be found to compute the correction $\Delta x$: 
+<p align="center">
+$\lambda = \frac{-C(x)}{w_1 \cdot \lVert \nabla C_1 \rVert^2 + w_2 \cdot \lVert \nabla C_2 \rVert^2 + ... + w_n \cdot \lVert \nabla C_n \rVert^2}$<p\>
+<p align="center">
 $\Delta x =\lambda w \nabla C$  
+</p>  
 
 $\lambda$ is the same for each particle participating in the constraint and $w$ is the inverse of the mass because, if a point does not move, it has infinite mass and $w=0$.
 
+## Stiffness
+The stiffness parameter $k$ can be included in the correction vectot, resulting in a hard-constraint if $k=1$, in a soft-constraint if $k \in (0, 1)$ and no-constraint if $k=0$:
+<p align="center">
+$\Delta x =k \cdot \lambda w \nabla C$  
+</p>  
 
+This is a simple approach, but for multiple iteration loops of the solver, the effect of $k$ is non-linear. The remaining error for a single distance constraint after $n_s$ solver iterations is $\Delta x(1-k)^{n_s}$ so, to get a linear relationship can be incorporated $k'=1-(1-k)^{1/n_s}$. Now the error becomes $\Delta x(1-k')^{n_s}=\Delta x(1-k)$ and becomes linearly dependent on $k$ and indipendent of $n_s$.  
+However, the resulting system is still dependent on the timestep of the simulation, producing increasingly rigid systems with smaller timesteps.
 
 
 
