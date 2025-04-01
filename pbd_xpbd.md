@@ -27,9 +27,12 @@ The objects to be simulated are represented by a set of particles with position 
 11)    v_i = (x_i - prev_i)\dt
 ```
 Lines 2 to 4 perform a symplectic Euler integration step on the velocities and the positions, and the current pos $x_i$ is assigned to the previous position. The positions $x_i$ are not the final positions, but rather predictions that will be corrected to satisfy the constraint.  
-The solver, in lines 5 to 9, iteratively corrects the predicted positions by resolving all constraints and computing the $\Delta x_i$ correction vector. In cases where the constraints are numerous, solving them one at a time per timestep will result in overly elastic objects; for this reason, the constraints are solved *n* times per timestep.
+The solver, in lines 5 to 9, iteratively corrects the predicted positions by resolving all constraints and computing the $\Delta x_i$ correction vector. In cases where the constraints are numerous, solving them one at a time per timestep will result in overly elastic objects; for this reason, the constraints are solved *n* times per timestep.  
+Line 10 to 11 are used to update the positions and the velocities.  
+This integretion system is very similar to the Verlet method.  
 
-
+Instead of solving the same constraint multiple times, it is more effective to perform multiple substeps and solve each constraint only once, as this speeds up convergence.  
+Therefore, we can rewrite the algorithm as follows:
 ```
 0) init data with dt_s = dt/n
 1) simulation loop
@@ -48,6 +51,14 @@ The solver, in lines 5 to 9, iteratively corrects the predicted positions by res
 11)    for all particles i
 12)      v_i = (x_i - prev_i)\dt_s
 ```
+
+## Solve general constraint
+The goal of the solver is to correct the predicted positions of the particles such that they satisfy all constraints. More specifically, a general constraint *C* is a function that takes as input all the particles participating in the constraint and returns a constraint error c. The problem here is that even a simple distance constraint yelds a non-linear equation, making the resulting system of equations non-linear.  
+So, PBD borrows the idea from the Gauss-Seidel algorithm (which can only handle linear systems) of solving each constraint independently, one after the other. In this way, the particles are projected into valid positions with respect to the given constraint alone. The fact that each constraint is linearized individually before its projection makes the solver more stable.  
+
+In the solver, given *x*, it is necessary to find the correction vector $\Delta x$ such that $C(\Delta x + x) = 0$.  
+If this vector is restricted to be in the direction of $\nabla C$ (which is also a requirement for linear and angular momentum conservation), it means that only a scalar $\lambda$ needs to be found to compute the correction $\Delta x$:  
+$\lambda = \frac{-C(x)}{w_1 \cdot \lVert \nabla C_1 \rVert^2 + w_2 \cdot \lVert \nabla C_2 \rVert^2 + ... + w_n \cdot \lVert \nabla C_n \rVert^2}$
 
 
 
