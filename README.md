@@ -7,14 +7,15 @@ This approach is particularly efficient and stable because:
 - is closely related to implicit backward Euler integration schemes.
 
 ## Algorithm
+The objects to be simulated are represented by a set of particles with position $x_i$ and velocity $v_i$ and a set of constraints with a stiffness parameter $k \in [0, 1]$ that defines the strength of the constraint. The simulation proceeds with a fixed timestep $\Delta t$, usually equal to $\frac{1}{60}$, as described by the following algorithm:
 ```
 0) init data
-1) during simulation
+1) simulation loop
 
 2)   for all particles i
-3)     v_i = v_i + dt * g
-4)     p_i = x_i
-4)     x_i = x_i + dt * g
+3)     v_i = v_i + dt * gravity
+4)     prev_i = x_i
+4)     x_i = x_i + dt * gravity
 
 5)   for n interations
 6)     for all constraints C
@@ -23,18 +24,21 @@ This approach is particularly efficient and stable because:
 9)         x_i = x_i + dx_i
 
 10)  for all particles i
-11)    v_i = (x_i - p_i)\dt
+11)    v_i = (x_i - prev_i)\dt
 ```
+Lines 2 to 4 perform a symplectic Euler integration step on the velocities and the positions, and the current pos $x_i$ is assigned to the previous position. The positions $x_i$ are not the final positions, but rather predictions that will be corrected to satisfy the constraint.  
+The solver, in lines 5 to 9, iteratively corrects the predicted positions by resolving all constraints and computing the $\Delta x_i$ correction vector. In cases where the constraints are numerous, solving them one at a time per timestep will result in overly elastic objects; for this reason, the constraints are solved *n* times per timestep.
+
 
 ```
 0) init data with dt_s = dt/n
-1) during simulation
+1) simulation loop
 2)   for n substeps
 
 3)     for all particles i
-4)       v_i = v_i + dt_s * g
-5)       p_i = x_i
-6)       x_i = x_i + dt_s * g
+4)       v_i = v_i + dt_s * gravity
+5)       prev_i = x_i
+6)       x_i = x_i + dt_s * gravity
 
 7)       for all constraints C
 8)         for all particles i of C
@@ -42,7 +46,7 @@ This approach is particularly efficient and stable because:
 10)          x_i = x_i + dx_i
 
 11)    for all particles i
-12)      v_i = (x_i - p_i)\dt_s
+12)      v_i = (x_i - prev_i)\dt_s
 ```
 
 
