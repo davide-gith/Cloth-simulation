@@ -58,7 +58,10 @@ So, PBD borrows the idea from the Gauss-Seidel algorithm (which can only handle 
 
 In the solver, given *x*, it is necessary to find the correction vector $\Delta x$ such that $C(\Delta x + x) = 0$.  
 If this vector is restricted to be in the direction of $\nabla C$ (which is also a requirement for linear and angular momentum conservation), it means that only a scalar $\lambda$ needs to be found to compute the correction $\Delta x$:  
-$\lambda = \frac{-C(x)}{w_1 \cdot \lVert \nabla C_1 \rVert^2 + w_2 \cdot \lVert \nabla C_2 \rVert^2 + ... + w_n \cdot \lVert \nabla C_n \rVert^2}$
+$\lambda = \frac{-C(x)}{w_1 \cdot \lVert \nabla C_1 \rVert^2 + w_2 \cdot \lVert \nabla C_2 \rVert^2 + ... + w_n \cdot \lVert \nabla C_n \rVert^2}$  
+$\Delta x =\lambda w \nabla C$  
+
+$\lambda$ is the same for each particle participating in the constraint and $w$ is the inverse of the mass because, if a point does not move, it has infinite mass and $w=0$.
 
 
 
