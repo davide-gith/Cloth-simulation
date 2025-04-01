@@ -2,7 +2,7 @@
 Position-Based Dynamics (PBD) is a simulation technique that, unlike traditional physics simulations, which focus on forces and accelerations, directly manipulates the positions of particles in the simulation to satisfy constraints, ensuring realistic behavior without the need for expensive computations like solving differential equations.  
 This approach is particularly efficient and stable because:
 - works directly with positions;
-- collisions are easily solvable. They are treated as constraints $C(p)>=0$ (kinematic restrictions where particles are moved to valid positions);
+- collisions are easily solvable. They are treated as constraints $C(p)>=0$, kinematic restrictions where particles are moved to valid positions;
 - it solves the problem of excessive energy buildup in the system that causes it to explode;
 - is closely related to implicit backward Euler integration schemes.
 
