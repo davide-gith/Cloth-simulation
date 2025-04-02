@@ -84,7 +84,9 @@ $\lambda = \frac{-C(x)}{w_1 \cdot \lVert \nabla C_1 \rVert^2 + w_2 \cdot \lVert 
 <p\>
 
 XPBD does not converge faster than PBD, it simply ensures that the behavior remains consistent at different iteration counts. Indeed, in the limit of zero compliance, XPBD is equivalent to a constraint stiffness of $k=1$ in PBD.
-PBD reference:
+
+#### References:
+PBD:
 ```
 @article{muller2007position,
   title={Position based dynamics},
@@ -97,8 +99,7 @@ PBD reference:
   publisher={Elsevier}
 }
 ```
-
-XPBD reference:
+XPBD:
 ```
 @article{macklin2016xpbd,
 	author = {Macklin, Miles and Müller, Matthias and Chentanez, Nuttapong},
