@@ -59,7 +59,8 @@ So, PBD borrows the idea from the Gauss-Seidel algorithm (which can only handle 
 In the solver, given *x*, it is necessary to find the correction vector $\Delta x$ such that $C(\Delta x + x) = 0$.  
 If this vector is restricted to be in the direction of $\nabla C$ (which is also a requirement for linear and angular momentum conservation), it means that only a scalar $\lambda$ needs to be found to compute the correction $\Delta x$: 
 <p align="center">
-$\lambda = \frac{-C(x)}{w_1 \cdot \lVert \nabla C_1 \rVert^2 + w_2 \cdot \lVert \nabla C_2 \rVert^2 + ... + w_n \cdot \lVert \nabla C_n \rVert^2}$<p\>
+$\lambda = \frac{-C(x)}{w_1 \cdot \lVert \nabla C_1 \rVert^2 + w_2 \cdot \lVert \nabla C_2 \rVert^2 + ... + w_n \cdot \lVert \nabla C_n \rVert^2}$
+<p\>
 <p align="center">
 $\Delta x =\lambda w \nabla C$  
 </p>  
@@ -76,34 +77,9 @@ This is a simple approach, but for multiple iteration loops of the solver, the e
 However, the resulting system is still dependent on the timestep of the simulation, producing increasingly rigid systems with smaller timesteps.
 
 # XPBD
+Extended position-Based Dynamics (XPBD) addressess the problem of iteration count and time-step dependent constraint stiffness in PBD by introducing an inverse stiffness or compliance $\alpha = \frac{1}{k}$ with each constraint. This modifies the equations by introducing, for each constraint, a time-step scaled compliance parameter $\tilde{\alpha}=\frac{\alpha}{\Delta t^2}$:
+<p align="center">
+$\lambda = \frac{-C(x)}{w_1 \cdot \lVert \nabla C_1 \rVert^2 + w_2 \cdot \lVert \nabla C_2 \rVert^2 + ... + w_n \cdot \lVert \nabla C_n \rVert^2 + \tilde{\alpha}}$
+<p\>
 
-
-
-
-
-
-
-<!--\begin{algorithm}
-\caption{Calcolo del fattoriale}
-\begin{algorithmic}[1]
-\REQUIRE $n \geq 0$
-\ENSURE $n!$
-\IF{$n = 0$}
-    \RETURN $1$
-\ELSE
-    \RETURN $n \times$ \textbf{factorial}($n-1$)
-\ENDIF
-\end{algorithmic}
-\end{algorithm}
-<span style="color:red">Testo in rosso</span>
-
-$$ F = m \cdot a $$
-
-La velocità è definita come **$v = \frac{\Delta x}{\Delta t}$**.
-
-(1) for each frame  
-(2)     for all particles *i*  
-(3)         $v_t$ $\leftarrow$
-    
-
--->
+XPBD does not converge faster than PBD, it simply ensures that the behavior remains consistent at different iteration counts. Indeed, in the limit of zero compliance, XPBD is equivalent to a constraint stiffness of $k=1$ in PBD.
