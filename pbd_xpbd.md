@@ -4,7 +4,8 @@ This approach is particularly efficient and stable because:
 - works directly with positions;
 - collisions are easily solvable. They are treated as constraints $C(p)>=0$, kinematic restrictions where particles are moved to valid positions;
 - it solves the problem of excessive energy buildup in the system that causes it to explode;
-- is closely related to implicit backward Euler integration schemes.
+- is closely related to implicit backward Euler integration schemes;
+- is unconditionally stable.
 
 ## Algorithm
 The objects to be simulated are represented by a set of particles with position $x_i$ and velocity $v_i$ and a set of constraints with a stiffness parameter $k \in [0, 1]$ that defines the strength of the constraint. The simulation proceeds with a fixed timestep $\Delta t$, usually equal to $\frac{1}{60}$, as described by the following algorithm:
