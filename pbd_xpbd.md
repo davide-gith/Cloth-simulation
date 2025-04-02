@@ -1,4 +1,4 @@
-# PBD/XPBD
+# PBD
 Position-Based Dynamics (PBD) is a simulation technique that, unlike traditional physics simulations, which focus on forces and accelerations, directly manipulates the positions of particles in the simulation to satisfy constraints, ensuring realistic behavior without the need for expensive computations like solving differential equations.  
 This approach is particularly efficient and stable because:
 - works directly with positions;
@@ -75,6 +75,7 @@ $\Delta x =k \cdot \lambda w \nabla C$
 This is a simple approach, but for multiple iteration loops of the solver, the effect of $k$ is non-linear. The remaining error for a single distance constraint after $n_s$ solver iterations is $\Delta x(1-k)^{n_s}$ so, to get a linear relationship can be incorporated $k'=1-(1-k)^{1/n_s}$. Now the error becomes $\Delta x(1-k')^{n_s}=\Delta x(1-k)$ and becomes linearly dependent on $k$ and indipendent of $n_s$.  
 However, the resulting system is still dependent on the timestep of the simulation, producing increasingly rigid systems with smaller timesteps.
 
+# XPBD
 
 
 
