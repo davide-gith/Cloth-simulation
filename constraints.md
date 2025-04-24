@@ -34,4 +34,11 @@ In the specific case of clothing, stretching needs to be handled in a particular
 What we want to reproduce, then, is an infinitely stiff material, which we can achieve by setting zero compliance distance constraints on the edges of the cloth.
 
 ## Bending constraint
-
+In cloth simulation, the other fundamental constraint is bending, the deformation of a surface when it curves or folds, without stretching. This corresponds to changes in the angles between adjacent triangles rather than changes in edge lengths, which characterize stretching.  
+To handle a bending constraint, two approaches can be used:
+- for each pair of adjacent triangles, a distance constraint is added between the two vertices that are not shared. This approach is very simple but problematic in the flat state;
+- for each pair of adjacent triangles, a bilateral bending constraint is added, where the initial angle 
+$\phi_0$ is compared with the current angle, and a coefficient $k_{bend}$ is introduced to control the bending stiffness. This approach is more robust, but also more computationally expensive. This constraint is defined as:
+<p align="center">
+$C_{bend}(x_1,x_2,x_3,x_4) = \left(\frac{(x_2 - x_1) \times (x_3-x_1)}{\lVert(x_2 - x_1) \times (x_3-x_1)\rVert} \cdot \frac{(x_2 - x_1) \times (x_4-x_1)}{\lVert(x_2 - x_1) \times (x_4-x_1)\rVert}\right) - \phi_0$  
+</p>
