@@ -27,10 +27,11 @@ $\Delta x_1 =\lambda w_1\ \nabla C_1 = \frac{w_1}{w_1+w_2} \cdot (l_c - l_r) \cd
 $\Delta x_2 =\lambda w_2\ \nabla C_2 = -\frac{w_2}{w_1+w_2} \cdot (l_c - l_r) \cdot \frac{x_2 - x_1}{\lVert x_2 - x_1 \rVert}$  
 </p>
 
+In the specific case of clothing, stretching needs to be handled in a particular way. Specifically:
+- gravity rarely causes significant stretching;
+- clothes stretch up to a certain limit, but beyond that, they no longer stretch despite increasing force;
+- excessive stretching is an artifact.
+What we want to reproduce, then, is an infinitely stiff material, which we can achieve by setting zero compliance distance constraints on the edges of the cloth.
 
+## Bending constraint
 
-<!--Anche i vestiti si stretchano, ma tipicamente hanno un forte limite di stretch. Si applica una forza che allunga il vestito, ma poi questo stretching non va oltre all'aumentare della forza
-La gravità raramente è causa di stretching che si nota
-Troppo stretching è un artefatto
-Quello che vorremmo simulare è un infinitely stiff material -> use zero compliance distance constraints on cloth mesh edges 
-L'unico -->
