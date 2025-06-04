@@ -11,8 +11,10 @@ To predict the motion of a particle, it is necessary to incorporate Newton's sec
 
 So, the problem to solve is to determine the particle position over time given its mass, the forces that act on the particle, its initial position and its initial velocity.
 
-
 ## Mass-spring system
+In addition to gravity, which is constantly applied to the system, additional internal and external forces influence the motion of the particles.  
+Most real word object are kept together by internal forces that prevent objects from breaking under external forces. One simple approximation often used in graphics is to model internal forces as stiff springs that connect particles. The spring force is applied along the direction of the spring and is proportional to the difference between the particle distance and the spring rest length.
+
 
 ## Time integration
 
