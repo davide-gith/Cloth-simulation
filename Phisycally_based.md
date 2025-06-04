@@ -13,10 +13,43 @@ So, the problem to solve is to determine the particle position over time given i
 
 ## Mass-spring system
 In addition to gravity, which is constantly applied to the system, additional internal and external forces influence the motion of the particles.  
-Most real word object are kept together by internal forces that prevent objects from breaking under external forces. One simple approximation often used in graphics is to model internal forces as stiff springs that connect particles. The spring force is applied along the direction of the spring and is proportional to the difference between the particle distance and the spring rest length.
+Most real word object are kept together by internal forces that prevent objects from breaking under external forces. One simple approximation often used in graphics is to model internal forces as stiff springs that connect particles. The spring force is applied along the direction of the spring and is proportional to the difference between the particle distance and the spring rest length (linear force).
+<p align="center">
+  $f_i(x_{p_i}, x_{p_j}) = k(\lVert x_{p_i} - x_{p_j} \rVert- r)\frac{x_{p_i} - x_{p_j}}{\lVert x_{p_i} - x_{p_j} \rVert}$  
+</p>
 
+<p align="center">
+$f_j(x_{p_j}, x_{p_i}) = -f_i(x_{p_i}, x_{p_j})$
+</p>
+
+where:
+* $k$: spring coefficient;
+* $\lVert x_{p_i} - x_{p_j} \rVert$: particle distance;
+* $r$: rest length;
+* $\frac{x_{p_i} - x_{p_j}}{\lVert x_{p_i} - x_{p_j} \rVert}$: force direction.
+
+Like this, depends on the distance between particles, so depends on how dense is the object. It's possible to rewrite the spring force normalized in this way:  
+<p align="center">
+  $f_i(x_{p_i}, x_{p_j}) = k_s \left(\frac{\lVert x_{p_i} - x_{p_j} \rVert}{r} - 1 \right) \frac{x_{p_i} - x_{p_j}}{\lVert x_{p_i} - x_{p_j} \rVert}$
+</p>
+
+where:
+* $k_s$: normalized spring coefficient;
+* $\frac{\lVert x_{p_i} - x_{p_j} \rVert}{r}$: normalized distance;
+* $\frac{x_{p_i} - x_{p_j}}{\lVert x_{p_i} - x_{p_j} \rVert}$: force direction.
+
+To simulate loss of energy due to friction, it's possiible to include a damping term that decrease the particle velocity along the spring direction:
+<p align="center">
+  $f_i(x_{p_i}, x_{p_j}, v_{p_i}, v_{p_j}) = k_d \left(\frac{\lVert v_{p_i} - v_{p_j}\rVert}{r} \cdot \frac{x_{p_i} - x_{p_j}}{\lVert x_{p_i} - x_{p_j} \rVert} \right)\frac{x_{p_i} - x_{p_j}}{\lVert x_{p_i} - x_{p_j} \rVert}$
+</p>
+
+where:
+* $\frac{\lVert v_{p_i} - v_{p_j}\rVert}{r}$: relative velocity;
+* $\frac{x_{p_i} - x_{p_j}}{\lVert x_{p_i} - x_{p_j} \rVert}$: force direction.
 
 ## Time integration
+Sicne the position of particles is exrpessed as a function of time, we obtain first-order differential equations (ODE). To solve them, numerical integration techniques must be used.  
+There are several time discretization methods, like explicit Euler, semi-implicit Euler and implicit Euler.
 
 ### Esplicit Euler
 
