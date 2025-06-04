@@ -48,8 +48,12 @@ where:
 * $\frac{x_{p_i} - x_{p_j}}{\lVert x_{p_i} - x_{p_j} \rVert}$: force direction.
 
 ## Time integration
-Sicne the position of particles is exrpessed as a function of time, we obtain first-order differential equations (ODE). To solve them, numerical integration techniques must be used.  
-There are several time discretization methods, like explicit Euler, semi-implicit Euler and implicit Euler.
+Sicne the position of particles is exrpessed as a function of time, we obtain first-order differential equations (ODE).  
+To solve this problem we discretize time at fixed, small (the smallest possible), intervals and write discrete approximations of the equations of motions:
+* $v_p(t) = \frac{dx_p(t)}{dt} = \lim_{\Delta t \to 0} \frac{x_p(t+ \Delta t) - p(t)}{\Delta t}$;
+* $a_p(t) = \frac{dv_p(t)}{dt} = \lim_{\Delta t \to 0} \frac{v_p(t+ \Delta t) - v(t)}{\Delta t}$.
+
+From these equations, we derive approximate updates for position and velocity, depending on the integration scheme used (like explicit Euler, semi-implicit Euler and implicit Euler).
 
 ### Esplicit Euler
 
