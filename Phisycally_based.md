@@ -8,7 +8,7 @@ The simplest things to simulate are particles, which can be described simply by 
 
 To predict the motion of a particle, it is necessary to incorporate Newton's second law of motion into the system:
 * $f(t) = m \cdot a(t)$;
-* $a_p(t) = \frac{dv_p(t)}{dt}$: acceleratio of a particle $p$ as a function of time $t$, which is the derivative of its velocity with respect to time (it's also true that: $a_p(t) = \frac{d^2x_p(t)}{d^2t}$);
+* $a_p(t) = \frac{dv_p(t)}{dt}$: acceleration of a particle $p$ as a function of time $t$, which is the derivative of its velocity with respect to time (it's also true that: $a_p(t) = \frac{d^2x_p(t)}{d^2t}$);
 
 So, the problem to solve is to determine the particle position over time given its mass, the forces that act on the particle, its initial position and its initial velocity.
 
