@@ -63,7 +63,7 @@ Explicit Euler is a technique in which the update of the system's state at time 
 </p>
 
 <p align="center">
-  $v_p(t) = v_p(t) + a_p(t) \cdot \Delta t = v_p(t) + \frac{f_p(t)}{m_p \cdot \Delta t}$
+  $v_p(t+ \Delta t) = v_p(t) + a_p(t) \cdot \Delta t = v_p(t) + \frac{f_p(t)}{m_p \cdot \Delta t}$
 </p>
 
 Advantages:
@@ -80,7 +80,7 @@ Disadvantages:
 Semi-implicit Euler is another time discretization method (the most commonly used) in which the position of the particles is evaluated using the velocity at time $t + \Delta t$. For this reason, the velocity is first computed and then used within the equation for updating the position of the particles.
 
 <p align="center">
-  $v_p(t) = v_p(t) + a_p(t) \cdot \Delta t = v_p(t) + \frac{f_p(t)}{m_p \cdot \Delta t}$
+  $v_p(t+ \Delta t) = v_p(t) + a_p(t) \cdot \Delta t = v_p(t) + \frac{f_p(t)}{m_p \cdot \Delta t}$
 </p>
 
 <p align="center">
