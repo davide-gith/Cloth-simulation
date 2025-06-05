@@ -66,11 +66,18 @@ Explicit Euler is a technique in which the update of the system's state at time 
   $v_p(t) = v_p(t) + a_p(t) \cdot \Delta t = v_p(t) + \frac{f_p(t)}{m_p \cdot \Delta t}$
 </p>
 
-Vantaggi e svantaggi / più semplice
+Advantages:
+* simple to implement;
+* computationally lightweight and fast.
+
+Disadvantages:
+* low numerical stability, especially with large $\Delta t$ or very stiff systems;
+* low accuracy;
+* does not conserve energy.
+
 
 ### Semi-implicit Euler
-Vantaggi e svantaggi / più utilizzato
-A livello numerico è più preciso di Eulero esplicito. Per aggiornare le posizioni uso la velocità al passo successivo, perciò devo prima calcolare la velocità che si calcola come nell'integrazione esplicita di Eulero.
+Semi-implicit Euler is another time discretization method (the most commonly used) in which the position of the particles is evaluated using the velocity at time $t + \Delta t$. For this reason, the velocity is first computed and then used within the equation for updating the position of the particles.
 
 <p align="center">
   $v_p(t) = v_p(t) + a_p(t) \cdot \Delta t = v_p(t) + \frac{f_p(t)}{m_p \cdot \Delta t}$
@@ -80,7 +87,13 @@ A livello numerico è più preciso di Eulero esplicito. Per aggiornare le posizi
   $x_p(t+ \Delta t) = x_p(t) + v_p(t + \Delta t) \cdot \Delta t$
 </p>
 
+Advantages:
+* numerically more stable than the explicit method;
+* simple to implement.
 
+Disadvantages:
+* not as accurate as implicit methods;
+* does not conserve energy well, but performs better than the explicit method.
 
 ### Implicit Euler
 
