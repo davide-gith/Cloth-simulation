@@ -57,7 +57,7 @@ To solve this problem we discretize time at fixed, small (the smallest possible)
 From these equations, we derive approximate updates for position and velocity, depending on the integration scheme used (like explicit Euler, semi-implicit Euler and implicit Euler).
 
 ### Explicit Euler
-Explicit Euler is a technique in which the update of the system's state at time $t + \Delta t$ is determined solely in terms of qualtities computed at time t.
+Explicit Euler is a technique in which the update of the system's state at time $t + \Delta t$ is determined solely in terms of quantities computed at time $t$.
 <p align="center">
   $x_p(t+ \Delta t) = x_p(t) + v_p(t) \cdot \Delta t$
 </p>
@@ -96,5 +96,22 @@ Disadvantages:
 * does not conserve energy well, but performs better than the explicit method.
 
 ### Implicit Euler
+Implicit Euler is a technique in which the update of the system's state at time $t + \Delta t$ is determined in terms of quantities computed at time $t + \Delta t$, Which are not yet known. This creates a complex non-linear system that must be solved at each timestep (for example, using Newton's method).
+
+<p align="center">
+  $v_p(t+ \Delta t) = v_p(t) + \frac{f_p(t+ \Delta t)}{m_p \cdot \Delta t}$
+</p>
+
+<p align="center">
+  $x_p(t+ \Delta t) = x_p(t) + v_p(t + \Delta t) \cdot \Delta t$
+</p>
+
+Advantages:
+* numerically stable, even with large timesteps;
+* accurate and suitable for long-term simulations;
+
+Disadvantages:
+* complex to implement because it requires solving a system;
+* computationally expensive and slow;
 
 #### Fast simulation of mass-spring systems
