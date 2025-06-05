@@ -7,7 +7,7 @@ The simplest things to simulate are particles, which can be described simply by 
 * $v_p(t) = \frac{dx_p(t)}{dt}$: velocity of particle $p$ as a function of time $t$, which is the derivative of its position with respect to time;
 
 To predict the motion of a particle, it is necessary to incorporate Newton's second law of motion into the system:
-* $f(t) = m \cdot a(t)$;
+* $f_p(t) = m_p \cdot a_p(t)$;
 * $a_p(t) = \frac{dv_p(t)}{dt}$: acceleration of a particle $p$ as a function of time $t$, which is the derivative of its velocity with respect to time (it's also true that: $a_p(t) = \frac{d^2x_p(t)}{d^2t}$);
 
 So, the problem to solve is to determine the particle position over time given its mass, the forces that act on the particle, its initial position and its initial velocity.
@@ -56,9 +56,31 @@ To solve this problem we discretize time at fixed, small (the smallest possible)
 
 From these equations, we derive approximate updates for position and velocity, depending on the integration scheme used (like explicit Euler, semi-implicit Euler and implicit Euler).
 
-### Esplicit Euler
+### Explicit Euler
+Explicit Euler is a technique in which the update of the system's state at time $t + \Delta t$ is determined solely in terms of qualtities computed at time t.
+<p align="center">
+  $x_p(t+ \Delta t) = x_p(t) + v_p(t) \cdot \Delta t$
+</p>
+
+<p align="center">
+  $v_p(t) = v_p(t) + a_p(t) \cdot \Delta t = v_p(t) + \frac{f_p(t)}{m_p \cdot \Delta t}$
+</p>
+
+Vantaggi e svantaggi / più semplice
 
 ### Semi-implicit Euler
+Vantaggi e svantaggi / più utilizzato
+A livello numerico è più preciso di Eulero esplicito. Per aggiornare le posizioni uso la velocità al passo successivo, perciò devo prima calcolare la velocità che si calcola come nell'integrazione esplicita di Eulero.
+
+<p align="center">
+  $v_p(t) = v_p(t) + a_p(t) \cdot \Delta t = v_p(t) + \frac{f_p(t)}{m_p \cdot \Delta t}$
+</p>
+
+<p align="center">
+  $x_p(t+ \Delta t) = x_p(t) + v_p(t + \Delta t) \cdot \Delta t$
+</p>
+
+
 
 ### Implicit Euler
 
