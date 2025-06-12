@@ -115,3 +115,4 @@ Disadvantages:
 * computationally expensive and slow;
 
 #### Fast simulation of mass-spring systems
+$g(x,d) = \frac{1}{2}(x-y)^TM(x-y) + \Delta t^2\frac{1}{2}x^TLx- \Delta t^2 x^TJd +x^Tf_{ext}$
