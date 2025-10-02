@@ -1,6 +1,20 @@
-# Cloth simulation
+# 👕 Cloth Simulation
+This repository implements a **cloth simulator** built in C++ and OpenGL, combining both **physically-based** and **position-based** simulation techniques.  
+The cloth interacts with a variety of colliders, including **spheres**, **boxes**, **capsules**, **swept-sphere lines**, and **swept-sphere triangles**, allowing the study of complex fabric dynamics in different scenarios.
 
-Find assets like meshes and materials at this link: https://univr-my.sharepoint.com/:f:/g/personal/davide_garavaso_studenti_univr_it/Ei4lNXu88ctCsmt0umZpFS4BCHFwZbXAy8eCDnDObxTfRA?e=CJEwc6
+## 📖 Documentation
+Theoretical details and notes are provided in the [Doc](./Doc) folder:  
+- [Physically-based simulation](./Doc/Phisycally_based.md)
+- [Position-based dynamics](./Doc/pbd_xpbd.md)  
+- [Constraints](./Doc/constraints.md)  
+
+## 📂 Assets
+Assets like meshes and materials are available at this link: https://univr-my.sharepoint.com/:f:/g/personal/davide_garavaso_studenti_univr_it/Ei4lNXu88ctCsmt0umZpFS4BCHFwZbXAy8eCDnDObxTfRA?e=CJEwc6
+
+## 🎥 Demo
+- [Cloth Simulation Algorithms (Explicit Euler, Symplectic Euler, PBD, XPBD)](https://www.youtube.com/watch?v=ohieZQnSpEU)  
+- [Cloth Simulation Collisions (sphere, capsule, swept-sphere line & triangle)](https://www.youtube.com/watch?v=yGHgXt2FPfw)
+
 
 Esplicit Euler [Press et al. (2007)]:
 ```
