@@ -1,0 +1,146 @@
+# ------------------------------
+# Visual Studio
+# ------------------------------
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.cache
+*.VC.db
+*.VC.VC.opendb
+ipch/
+*.obj
+*.pch
+*.pdb
+*.ilk
+*.idb
+*.tlog
+*.log
+*.lastbuildstate
+*.cache
+*.aps
+*.ncb
+*.sdf
+*.opendb
+*.VC.opendb
+*.VC.db
+*.exe
+*.dll
+*.lib
+*.exp
+*.idb
+*.ipdb
+*.iobj
+*.manifest
+*.vcxproj.user
+*.csproj.user
+*.VC.VC.opendb
+*.natvis
+*.vcxproj
+
+# ------------------------------
+# Visual Studio Code
+# ------------------------------
+.vscode/
+*.code-workspace
+cpp\ClothSimulator\ClothSimulator\x64\Debug\
+
+# ------------------------------
+# PyCharm
+# ------------------------------
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ------------------------------
+# Python
+# ------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ------------------------------
+# C++ Build & Binaries
+# ------------------------------
+/build/
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.class
+# ------------------------------
+# C++ Libraries
+# ------------------------------
+cpp/ClothSimulator/Lib/
+
+# ------------------------------
+# CMake
+# ------------------------------
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+# ------------------------------
+# Logs & Misc
+# ------------------------------
+*.log
+*.tmp
+*.swp
+*.DS_Store
+Thumbs.db
+
+# ------------------------------
+# 3D Models, Images & Textures
+# ------------------------------
+*.fbx
+*.obj
+*.gltf
+*.glb
+*.stl
+*.ply
+*.blend
+*.max
+*.3ds
+*.dae
+*.abc
+*.usd
+*.usdz
+
+# ------------------------------
+# Image & Texture Files
+# ------------------------------
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.gif
+*.tga
+*.tif
+*.tiff
+*.psd
+*.exr
+*.hdr
+*.svg
+*.webp
+
+# ------------------------------
+# Raw Texture Files
+# ------------------------------
+*.dds
+*.ktx
+*.ktx2
+*.tga
+/cpp/ClothSimulator/Lib
