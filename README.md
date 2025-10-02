@@ -1,6 +1,6 @@
 # Cloth simulation
 
-https://univr-my.sharepoint.com/:f:/g/personal/davide_garavaso_studenti_univr_it/Ei4lNXu88ctCsmt0umZpFS4BCHFwZbXAy8eCDnDObxTfRA?e=CJEwc6
+Find assets like meshes and materials at this link: https://univr-my.sharepoint.com/:f:/g/personal/davide_garavaso_studenti_univr_it/Ei4lNXu88ctCsmt0umZpFS4BCHFwZbXAy8eCDnDObxTfRA?e=CJEwc6
 
 Esplicit Euler [Press et al. (2007)]:
 ```
